@@ -148,7 +148,7 @@ export default class Main extends Component {
     }});
   };
 
-  validate(data, type) {
+  validate(data, component) {
     const rules = {
       amount: {
         amount: ['required', 'decimal'],
@@ -162,7 +162,7 @@ export default class Main extends Component {
         cvv: ['required', 'integer']
       }
     };
-    const validator = new LIVR.Validator(rules[type]);
+    const validator = new LIVR.Validator(rules[component]);
 
     validator.registerRules({
       card_number: function() {
