@@ -154,7 +154,7 @@ class AmountForm extends Component {
                   </Select>
               </FormControl>
             </Grid>
-            <Grid item xs={12} sm={2}>
+            <Grid item xs={12} sm={2} style={{ display: 'flex' }}>
               <Button
                 variant='outlined'
                 color='primary'

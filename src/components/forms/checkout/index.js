@@ -12,9 +12,7 @@ import {
   IconButton
 } from '@material-ui/core';
 import ArrowBack from '@material-ui/icons/ArrowBack';
-import CardNumberMask from './card_number_mask';
-import ExpireDateMask from './expire_date_mask';
-import CVVMask from './cvv_mask';
+import InputMask from './input_mask';
 
 const styles = theme => ({
   root: {
@@ -113,7 +111,15 @@ class CheckoutForm extends PureComponent {
                   value={cardNumber}
                   placeholder={'XXXX XXXX XXXX XXXX'}
                   InputProps={{
-                    inputComponent: CardNumberMask,
+                    inputComponent: InputMask,
+                    inputProps: {
+                      mask: [
+                        /\d/, /\d/, /\d/, /\d/, ' ',
+                        /\d/, /\d/, /\d/, /\d/, ' ',
+                        /\d/, /\d/, /\d/, /\d/, ' ',
+                        /\d/, /\d/, /\d/, /\d/,
+                      ]
+                    }
                   }}
                   fullWidth
                   onChange={this.props.onFieldChange.bind(null, 'cardNumber')}
@@ -129,7 +135,10 @@ class CheckoutForm extends PureComponent {
                   placeholder={'MM/YYYY'}
                   fullWidth
                   InputProps={{
-                    inputComponent: ExpireDateMask,
+                    inputComponent: InputMask,
+                    inputProps: {
+                      mask: [/\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
+                    }
                   }}
                   onChange={this.props.onFieldChange.bind(null, 'expireDate')}
                   error={!!errors.expireDate}
@@ -144,7 +153,10 @@ class CheckoutForm extends PureComponent {
                   placeholder={'XXX'}
                   fullWidth
                   InputProps={{
-                    inputComponent: CVVMask,
+                    inputComponent: InputMask,
+                    inputProps: {
+                      mask: [/\d/, /\d/, /\d/]
+                    }
                   }}
                   onChange={this.props.onFieldChange.bind(null, 'cvv')}
                   error={!!errors.cvv}
